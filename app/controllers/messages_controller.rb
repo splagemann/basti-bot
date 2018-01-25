@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
 
     url = ENV.fetch('API_URL')
     token = ENV.fetch('TOKEN')
-    httparty.post url + token,
+    HTTParty.post url + token,
                   body: msg.to_json,
                   headers: { 'Content-Type' => 'application/json' }
     render plain: ''
