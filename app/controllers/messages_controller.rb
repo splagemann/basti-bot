@@ -28,10 +28,10 @@ class MessagesController < ApplicationController
   def handle_message
     msg = {
       recipient: {
-        id: params[:sender][:id]
+        id: message[:sender][:id]
       },
       message: {
-        text: params[:message][:text]
+        text: message[:message][:text]
       }
     }
 
@@ -47,5 +47,9 @@ class MessagesController < ApplicationController
 
   def hub_params
     params.permit('hub.challenge', 'hub.mode', 'hub.verify_token')
+  end
+
+  def message
+    params[:message][:entry][0][:messaging][0]
   end
 end
